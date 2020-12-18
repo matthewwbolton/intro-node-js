@@ -57,6 +57,24 @@ const server = http.createServer(async (req, res) => {
   res.end();
   // missing asset should not cause server crash
   // most important part, send down the asset
+  // check the router for the incoming route + method pair
+  const routeMatch = router[`${route} ${method}`];
+  // return not found if the router does not have a match
+  if (!routeMatch) {
+    res.writeHead(404);
+    logRequest(method, route, 404);
+    return res.end();
+  }
+
+  const { type, asset } = routeMatch;
+
+  // set the content-type header for the asset so applications like a browser will know how to handle it
+  res.writeHead(200, { "Content-Type": type });
+  // most important part, send down the asset
+  res.write(await findAsset(asset));
+  logRequest(method, route, 200);
+  res.end();
+
 });
 
 server.listen(port, hostname, () => {

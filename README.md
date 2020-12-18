@@ -1,14 +1,15 @@
 # Intro to Nodejs
 > Scott Moss & Frontend Masters
-- [Resources](#resources)
-- [Course](#course)
-- [Excercises](#excercises)
-  - [Installing Node](#installing-node)
-  - [Modules (node vs browser)](#modules-node-vs-browser)
-  - [CLI (npm)](#cli-npm)
-  - [API (async code)](#api-async-code)
-  - [Debugging & Testing](#debugging--testing)
-  - [Sharing and Deploying](#sharing-and-deploying)
+- [Intro to Nodejs](#intro-to-nodejs)
+  - [Resources](#resources)
+  - [Course](#course)
+  - [Exercises](#exercises)
+    - [Installing Node](#installing-node)
+    - [Modules (node vs browser)](#modules-node-vs-browser)
+    - [CLI (npm)](#cli-npm)
+    - [API (async code)](#api-async-code)
+    - [Debugging & Testing](#debugging--testing)
+    - [Sharing and Deploying](#sharing-and-deploying)
 
 ## Resources
 * [Slides](https://slides.com/scotups/deck/fullscreen)
@@ -18,6 +19,7 @@
 * [NPM](https://www.npmjs.com/)
 
 ## Course
+Thanks for taking the [Introduction to Node.js course](https://frontendmasters.com/courses/node-js/) -- the course has two parts: slides and exercises. The slides describe the exercises in detail. Each exercise have a folder.
 This course has two parts, slides and exercises. The slides describe the exercises in detail. Each exercise has a folder
 ## Exercises
 ### Installing Node
@@ -35,7 +37,7 @@ Important: After installing node, please run `npm install i` or `npm install` to
   * test - `npx jest`
 
 This exercise will have you convert some JavaScript written for the browser, so that it works with node.
-- [ ] check out to start branch
+- [ ] checkout to start branch
 - [ ] check the README on how to run test (will talk later about that command)
 - [ ] fix and convert the 3 js files in the exercises/modules/browser to Nodejs JavaScript and place them in exercises/modules/node
 - [ ] ensure all tests pass by running test command again
@@ -56,7 +58,7 @@ You'll be creating a CLI program that saves and retrieves contacts from and addr
 * commands
   * start the server - `node exercises/api/server.js`
 
-You'll be refacoring and fixing a simple static asset server. The server uses blocking sync code and crashes whenever a request comes in that is asking for an asset that is not found. Neither of those are desirable. You'll also have to teach the server how to server the assets it has in the `assets` folder.
+You'll be refactoring and fixing a simple static asset server. The server uses blocking sync code and crashes whenever a request comes in that is asking for an asset that is not found. Neither of those are desirable. You'll also have to teach the server how to server the assets it has in the `assets` folder.
 
 - [ ] install all remote modules (hint: use npm)
 - [ ] check the README on how to run your server
