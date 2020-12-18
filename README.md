@@ -20,11 +20,10 @@
 
 ## Course
 Thanks for taking the [Introduction to Node.js course](https://frontendmasters.com/courses/node-js/) -- the course has two parts: slides and exercises. The slides describe the exercises in detail. Each exercise have a folder.
-
+This course has two parts, slides and exercises. The slides describe the exercises in detail. Each exercise has a folder
 ## Exercises
-
 ### Installing Node
-Install node with [node version manager (NVM)](https://github.com/creationix/nvm#installation). NVM was created by the community and not the Nodejs foundation. However, it is the recommended approach. After installing nvm, use nvm to install the latest version of Nodejs, which at this time is `10` and set it to the default version
+Install node with [node version manager (NVM)](https://github.com/creationix/nvm#installation). NVM was created by the community and not the Nodejs foundation. However, it is the recommended approach. After installing nvm, use nvm to install the lates version of Nodejs, which at this time is `10` and set it to the default version
 ```bash
 nvm install node # node is an alias for the latest version
 nvm alias default node

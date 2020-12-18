@@ -5,17 +5,17 @@ const path = require("path");
 const mime = require("mime");
 
 /**
- * async function that reads asset from disk
+ * this function is blocking, fix that
  * @param {String} name full file name of asset in asset folder
  */
 const findAsset = (name) => {
+  const assetPath = path.join(__dirname, "assets", name);
   return new Promise((resolve, reject) => {
-    const assetPath = path.join(__dirname, "assets", name);
-    fs.readFile(assetPath, { encoding: "utf-8" }, (err, asset) => {
-      if (err) {
-        reject(err);
+    fs.readFile(assetPath, { encoding: "utf-8" }, (error, result) => {
+      if (error) {
+        reject(error);
       } else {
-        resolve(asset);
+        resolve(result);
       }
     });
   });
@@ -23,15 +23,15 @@ const findAsset = (name) => {
 
 const hostname = "127.0.0.1";
 const port = 3000;
-// simple, quick router object
+
 const router = {
   "/ GET": {
     asset: "index.html",
-    type: mime.getType("html"),
+    mime: mime.getType("html"),
   },
   "/style.css GET": {
     asset: "style.css",
-    type: mime.getType("css"),
+    mime: mime.getType("css"),
   },
 };
 
@@ -42,6 +42,21 @@ const logRequest = (method, route, status) =>
 const server = http.createServer(async (req, res) => {
   const method = req.method;
   const route = url.parse(req.url).pathname;
+  const match = router[`${route} ${method}`];
+
+  if (!match) {
+    res.writeHead(404);
+    logRequest(method, route, 404);
+    res.end();
+    return;
+  }
+  // this is sloppy, especially with more assets, create a "router"
+  res.writeHead(200, { "Content-Type": match.mime });
+  res.write(await findAsset(match.asset));
+  logRequest(method, route, 200);
+  res.end();
+  // missing asset should not cause server crash
+  // most important part, send down the asset
   // check the router for the incoming route + method pair
   const routeMatch = router[`${route} ${method}`];
   // return not found if the router does not have a match
@@ -59,6 +74,7 @@ const server = http.createServer(async (req, res) => {
   res.write(await findAsset(asset));
   logRequest(method, route, 200);
   res.end();
+
 });
 
 server.listen(port, hostname, () => {
